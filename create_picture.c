@@ -31,18 +31,20 @@ ESTADO** registraCaminhos(int numEstados, int melle_moore, int numSegmentos){
 	/*Formacao de matriz de adjacencia para relacionar os estados*/
 	for(i = 0; i < numSegmentos; i++){
 		scanf("%d",&present_state);
-        scanf("%d",&next_state);
-                        
-                /*Verificando se o segmento vai ser criado*/
-        if (present_state > 0 && next_state > 0){ 
+		scanf("%d",&next_state);
+				
+		/*Verificando se o segmento vai ser criado*/
+		if (present_state > 0 && next_state > 0 && present_state <= numEstados && next_state <= numEstados){ 
 			matriz[present_state-1][next_state-1].passagem  = getInfo();/*Entrada*/
 			matriz[present_state-1][next_state-1].out  = getInfo();/*Saida*/
 			/*Flag pra informar que tem informacao pra ser avaliada*/
 			matriz[present_state-1][next_state-1].atual = 1;
-		}else if(present_state <= 0 || next_state <= 0){
+		}else {
 			printf("Essa entrada nao eh aceita\n");
 			if(present_state <= 0 || next_state <= 0)
-				printf("Os estados sao identificados pelos numeros que vão de 1 a 8, tente novamente\n");
+				printf("Os estados sao identificados pelos numeros que vão de 1 a 8, tente novamente!\n");
+			else if(present_state > numEstados || next_state > numEstados)
+				printf("Foi ultrapassado a quantidade total de estados, tente novamente!\n");
 			i--;
 			passagem = getInfo();
 			saida = getInfo();
